@@ -1,30 +1,26 @@
-# 100 Days Of Code - Log
+# 100 Days of Code - Log
 
-### Day 0: February 30, 2016 (Example 1)
-##### (delete me or comment me out)
+## Day 1: Phase 2 — MongoDB + Mongoose Integration
 
-**Today's Progress**: Fixed CSS, worked on canvas functionality for the app.
+### 🎯 Goal
+Replace the temporary in-memory array (`const expenses = []`) with a persistent database using Express, Mongoose, and MongoDB Atlas.
 
-**Thoughts:** I really struggled with CSS, but, overall, I feel like I am slowly getting better at it. Canvas is still new for me, but I managed to figure out some basic functionality.
+---
 
-**Link to work:** [Calculator App](http://www.example.com)
+### 🧠 Concepts Mastered
+1. **Database Architecture**: Understood MongoDB databases, collections, documents, and 24-character `ObjectId` primary keys.
+2. **Mongoose Connection**: Connected Express server asynchronously to MongoDB Atlas via `mongoose.connect()`.
+3. **Schemas & Models**: Created `ExpenseSchema` with strict validation rules (`required`, `trim`, `min: 0`, `maxlength`) and `default: Date.now`.
+4. **`async/await` CRUD Operations**:
+   - `GET /expenses` $\rightarrow$ `Expense.find()`
+   - `POST /expenses` $\rightarrow$ `new Expense(...).save()`
+   - `GET /expenses/:id` $\rightarrow$ `Expense.findById(id)`
+   - `PUT /expenses/:id` $\rightarrow$ `Expense.findByIdAndUpdate(id, data, { new: true, runValidators: true })`
+   - `DELETE /expenses/:id` $\rightarrow$ `Expense.findByIdAndDelete(id)`
+5. **Database Error Handling**: Handled Mongoose `CastError` (invalid `ObjectId` format) and `ValidationError` (schema violations) returning HTTP status `400`.
 
-### Day 0: February 30, 2016 (Example 2)
-##### (delete me or comment me out)
+---
 
-**Today's Progress**: Fixed CSS, worked on canvas functionality for the app.
-
-**Thoughts**: I really struggled with CSS, but, overall, I feel like I am slowly getting better at it. Canvas is still new for me, but I managed to figure out some basic functionality.
-
-**Link(s) to work**: [Calculator App](http://www.example.com)
-
-
-### Day 1: June 27, Monday
-
-**Today's Progress**: I've gone through many exercises on FreeCodeCamp.
-
-**Thoughts** I've recently started coding, and it's a great feeling when I finally solve an algorithm challenge after a lot of attempts and hours spent.
-
-**Link(s) to work**
-1. [Find the Longest Word in a String](https://www.freecodecamp.com/challenges/find-the-longest-word-in-a-string)
-2. [Title Case a Sentence](https://www.freecodecamp.com/challenges/title-case-a-sentence)
+### ✅ Testing & Verification
+- Tested all 5 REST API routes in Postman.
+- Verified document persistence in MongoDB Atlas.
