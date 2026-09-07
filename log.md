@@ -24,3 +24,21 @@ Replace the temporary in-memory array (`const expenses = []`) with a persistent 
 ### ✅ Testing & Verification
 - Tested all 5 REST API routes in Postman.
 - Verified document persistence in MongoDB Atlas.
+
+---
+
+## Day 2: Phase 3 — Validation + Centralized Error Handling
+
+### 🎯 Goal
+Build a robust, centralized error handling system and custom error classes to handle client validation errors, database errors, and unmatched routes cleanly.
+
+---
+
+### 🧠 Concepts Mastered
+1. **Centralized Error Middleware**: Built Express error middleware `(err, req, res, next)` to handle all application errors in one unified place.
+2. **Custom Error Class (`AppError`)**: Created an operational error class extending JavaScript `Error` with HTTP `statusCode`, `status` ('fail' / 'error'), and `isOperational = true`.
+3. **Mongoose Error Handling**:
+   - `CastError`: Transformed invalid 24-character `ObjectId` errors into user-friendly `400 Bad Request`.
+   - `ValidationError`: Captured schema validation failures and returned `400 Bad Request`.
+4. **Unmatched 404 Route Handler**: Handled invalid request URLs gracefully before passing to error middleware.
+5. **Error Delegation via `next(err)`**: Passed asynchronous errors to the centralized error handler without repeating manual `res.status().json()` responses across controllers.
