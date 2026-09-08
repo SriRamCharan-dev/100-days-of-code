@@ -42,3 +42,25 @@ Build a robust, centralized error handling system and custom error classes to ha
    - `ValidationError`: Captured schema validation failures and returned `400 Bad Request`.
 4. **Unmatched 404 Route Handler**: Handled invalid request URLs gracefully before passing to error middleware.
 5. **Error Delegation via `next(err)`**: Passed asynchronous errors to the centralized error handler without repeating manual `res.status().json()` responses across controllers.
+
+---
+
+## Day 3: Authentication & Password Hashing Architecture
+
+### 🎯 Goal
+Implement secure user authentication architecture using User schemas, one-way password hashing with `bcryptjs`, and clean Signup/Login API endpoints.
+
+---
+
+### 🧠 Concepts Mastered
+1. **User Schema & Data Guards**:
+   - Built `UserSchema` in `models/user.js` with `username`, `email` (unique constraint), `password`, and timestamp fields.
+   - Configured `select: false` on the password field to prevent sensitive hash leaks in API responses.
+2. **Password Hashing Mechanics (`bcryptjs`)**:
+   - Understood one-way password salting and hashing with 10 salt rounds (`bcrypt.hash(password, 10)`).
+   - Understood secure hash verification on login (`bcrypt.compare(enteredPassword, user.password)`).
+3. **Authentication Endpoints**:
+   - Created `POST /auth/register` for user creation with hashed passwords.
+   - Created `POST /auth/login` using `.select('+password')` to compare credentials and authenticate users securely.
+4. **System Architecture Visualizations**:
+   - Modeled the authentication and hashing pipeline using C4 architecture diagrams in draw.io.
