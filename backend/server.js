@@ -1,8 +1,12 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const AppError = require('./utils/Apperror.js');
+const globalErrorHandler = require('./utils/middleware/errorHandler.js');
+const bcrypt = require('bcrypt');
 const port = 3000;
 const Expense = require('./models/Expense.js');//./relative paths while / root paths 
+const User = require('./models/user.js');
 const MONGO_URI = 'mongodb+srv://sriramcharannandigam_db_user:Sriram2028@cluster0.s4yrmqa.mongodb.net/?appName=Cluster0';
 mongoose.connect(MONGO_URI)
     .then(() => {
@@ -21,18 +25,18 @@ app.get("/", (req, res) => {
 
 
 //get route display existing data
-app.get("/expenses", async (req, res) => {
+app.get("/expenses", async (req, res, next) => {
     try {
         const expenses = await Expense.find();
         return res.status(200).json(expenses);
     } catch (err) {
-        return res.status(500).json({ message: 'internal server error' });
+        next(err);
     }
 });
 
 
 //post route to add the things 
-app.post("/expenses", async (req, res) => {
+app.post("/expenses", async (req, res, next) => {
     try {
         const { title, amount, category } = req.body;
 
@@ -43,11 +47,11 @@ app.post("/expenses", async (req, res) => {
         await newExpense.save();
         return res.status(201).json(newExpense);
     } catch (err) {
-        return res.status(500).json({ message: 'internal server error' });
+        next(err);
     }
 });
 //find the expense by id
-app.get("/expenses/:id", async (req, res) => {
+app.get("/expenses/:id", async (req, res, next) => {
     const { id } = req.params;
     try {
         const expense = await Expense.findById(id);
@@ -57,12 +61,11 @@ app.get("/expenses/:id", async (req, res) => {
         return res.status(200).json(expense);
     }
     catch (err) {
-        console.log(err.message);
-        return res.status(500).json({ message: 'internal server error' });
+        next(err);
     }
 });
 //put route
-app.put("/expenses/:id", async (req, res) => {
+app.put("/expenses/:id", async (req, res, next) => {
     const { id } = req.params;
     try {
         const updatedExpense = await Expense.findByIdAndUpdate(id, req.body,
@@ -71,17 +74,16 @@ app.put("/expenses/:id", async (req, res) => {
                 runValidators: true
             })
         if (!updatedExpense) {
-            return res.status(404).json({ message: 'Expense not found' });
+            return res.status(404).json({ message: 'not found' });
         }
         return res.status(200).json(updatedExpense);
     }
     catch (err) {
-        console.log(err.message);
-        return res.status(500).json({ message: 'internal server error' });
+        next(err);
     }
 });
 //delete route
-app.delete("/expenses/:id", async (req, res) => {
+app.delete("/expenses/:id", async (req, res, next) => {
     const id = req.params.id;
     try {
         const deletedExpense = await Expense.findByIdAndDelete(id);
@@ -91,11 +93,78 @@ app.delete("/expenses/:id", async (req, res) => {
         return res.status(200).json(deletedExpense);
     }
     catch (err) {
-        console.log(err.message);
-        return res.status(500).json({ message: 'internal server error' });
+        next(err);
     }
 
 });
+//-------------Authentication part----------------------------------------
+//signup Route
+app.post('/auth/register', async (req, res, next) => {
+
+    try {
+        const { username, email, password } = req.body;
+
+        if (!username || !email || !password) {
+            return res.status(400).json({
+                message: "Username, email and password are required"
+            });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+            username,
+            email,
+            password: hashedPassword
+        });
+        await newUser.save();
+        res.status(201).json({
+            success: true,
+            message: "User registered sucessfully!"
+        });
+
+
+    } catch (err) {
+        next(err);
+    }
+});
+
+//Login ROute
+app.post('/auth/login', async (req, res, next) => {
+    try {
+        const { username, email, password } = req.body;
+        const user = await User.findOne({ email: email });
+
+        if (!username || !email || !password) {
+            return res.status(400).json({
+                message: "Username, email and password are required"
+            });
+        }
+        if (!user) {
+            return res.status(401).json({
+                message: " 🙃 Invalid email or password"
+            });
+        }
+        if (await bcrypt.compare(password, user.password)) {
+            res.status(200).json({
+                message: "password is correct user logged in sucessfully"
+            });
+        } else {
+            res.status(401).json({
+                message: "recheck your email and password"
+            });
+        }
+    }
+    catch (err) {
+        next(err);
+
+    }
+
+});
+
+app.all("*", (req, res, next) => {
+    next(new AppError(`cannot find ${req.originalUrl} on this server`, 404))
+});
+
+app.use(globalErrorHandler);
 
 app.listen(port, () => {
     console.log(`app is listening on  port http://localhost:${port}`);

@@ -19,6 +19,7 @@ const ExpenseSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
+        //Date.now() calls the function immediately when the server boots, pinning all expenses to that exact server boot time!
         default: Date.now
     }
 });
