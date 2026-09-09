@@ -64,3 +64,22 @@ Implement secure user authentication architecture using User schemas, one-way pa
    - Created `POST /auth/login` using `.select('+password')` to compare credentials and authenticate users securely.
 4. **System Architecture Visualizations**:
    - Modeled the authentication and hashing pipeline using C4 architecture diagrams in draw.io.
+
+---
+
+## Day 4: Solved Easy Level DSA Problems
+
+### 🎯 Goal
+Practice array manipulation, two-pointer techniques, and mathematical range counting algorithms by solving 4 LeetCode Easy problems.
+
+---
+
+### 💡 Problems Solved & Key Learnings
+1. **Sort Array By Parity II**:
+   - Organized arrays such that even indices contain even numbers and odd indices contain odd numbers using two pointers (`even = 0`, `odd = 1`).
+2. **Squares of a Sorted Array**:
+   - Transformed a sorted array containing negative numbers into a sorted array of their squares in $O(N)$ time using two pointers at both ends (`left` & `right`).
+3. **Sort Array By Parity**:
+   - Partitioned an array to move all even integers to the beginning followed by all odd integers using in-place swaps.
+4. **Count Commas in Range**:
+   - Calculated the total number of commas required when writing out all numbers within a given numerical range $[L, R]$ using mathematical digit group boundaries.
