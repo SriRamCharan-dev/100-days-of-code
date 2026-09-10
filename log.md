@@ -83,3 +83,22 @@ Practice array manipulation, two-pointer techniques, and mathematical range coun
    - Partitioned an array to move all even integers to the beginning followed by all odd integers using in-place swaps.
 4. **Count Commas in Range**:
    - Calculated the total number of commas required when writing out all numbers within a given numerical range $[L, R]$ using mathematical digit group boundaries.
+
+---
+
+## Day 5: JWT Generation & Authentication Middleware
+
+### 🎯 Goal
+Implement stateless JWT authentication by issuing signed tokens upon signup/login and protecting API endpoints with token verification middleware.
+
+---
+
+### 🧠 Concepts & Roadmap
+1. **JSON Web Token (JWT) Generation 🔑**:
+   - Installed `jsonwebtoken` package.
+   - Generated a signed JWT token on successful Signup and Login (`jwt.sign({ id: user._id }, SECRET, { expiresIn: '30d' })`).
+   - Returned the signed token back in the JSON response payload.
+2. **Authentication Middleware (`protect` middleware) 🛡️**:
+   - Created a `protect` middleware function in `middleware/authMiddleware.js`.
+   - Extracted and verified the JWT token from the `Authorization: Bearer <token>` request header.
+   - Decoded the payload and attached the logged-in user (`req.user`) to the request object for protected routes.
