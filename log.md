@@ -102,3 +102,11 @@ Implement stateless JWT authentication by issuing signed tokens upon signup/logi
    - Created a `protect` middleware function in `middleware/authMiddleware.js`.
    - Extracted and verified the JWT token from the `Authorization: Bearer <token>` request header.
    - Decoded the payload and attached the logged-in user (`req.user`) to the request object for protected routes.
+
+---
+
+## Day 6: Bug Fixes & DSA Problem Solving
+
+### 🧠 Summary
+- **DSA**: Solved a LeetCode problem.
+- **Dev**: Fixed bugs in the User Schema related to date default functions and relative path URLs. Completed college assignments and records.
