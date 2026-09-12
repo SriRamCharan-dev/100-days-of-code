@@ -110,3 +110,21 @@ Implement stateless JWT authentication by issuing signed tokens upon signup/logi
 ### 🧠 Summary
 - **DSA**: Solved a LeetCode problem.
 - **Dev**: Fixed bugs in the User Schema related to date default functions and relative path URLs. Completed college assignments and records.
+
+---
+
+## Day 7: Computer Networks, Security Cleanup & DSA Milestone
+
+### 🎯 Goal
+Master core Computer Networking concepts, secure application secrets with environment variables, and achieve a 100-Day DSA badge milestone.
+
+---
+
+### 🧠 Summary
+- **DSA**: Solved a LeetCode problem and earned the **100 Days Badge for 2026** 🏅.
+- **Core Subjects (Computer Networks)**:
+  - Studied Ethernet Switching, Virtual LANs (VLANs), and the key differences between Layer 2 Switching and Layer 3 Routing.
+- **Dev & Security**:
+  - Cleaned up project security by setting up environment variables (`.env`).
+  - Added `.env` and `.gitignore` entries to prevent sensitive database URIs, API keys, and JWT secrets from being committed.
+  - Reviewed password hashing and JWT security fundamentals.
