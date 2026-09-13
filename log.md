@@ -128,3 +128,21 @@ Master core Computer Networking concepts, secure application secrets with enviro
   - Cleaned up project security by setting up environment variables (`.env`).
   - Added `.env` and `.gitignore` entries to prevent sensitive database URIs, API keys, and JWT secrets from being committed.
   - Reviewed password hashing and JWT security fundamentals.
+
+---
+
+## Day 8: Backtracking, DSA Medium & Computer Networks Quiz
+
+### 🎯 Goal
+Strengthen backtracking & recursion problem-solving skills, tackle medium-level algorithmic challenges, and reinforce Computer Networks fundamentals.
+
+---
+
+### 🧠 Summary & Key Learnings
+- **DSA & Problem Solving**:
+  - Solved a **LeetCode Medium** problem.
+  - Solved the standard **Rat in a Maze** problem using **Recursion & Backtracking** (exploring path matrices with boundary checks, visited state tracking, and state resets).
+- **Core Subjects (Computer Networks)**:
+  - Revised core networking concepts including network **Topologies** (Star, Mesh, Bus, Ring, Hybrid) and **VLANs** (Virtual LANs, traffic isolation, and broadcast domain separation).
+  - Completed the module quiz with a score of **13/14** 🎯.
+
