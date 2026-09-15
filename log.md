@@ -146,3 +146,20 @@ Strengthen backtracking & recursion problem-solving skills, tackle medium-level 
   - Revised core networking concepts including network **Topologies** (Star, Mesh, Bus, Ring, Hybrid) and **VLANs** (Virtual LANs, traffic isolation, and broadcast domain separation).
   - Completed the module quiz with a score of **13/14** 🎯.
 
+---
+
+## Day 11: VLAN Traffic Tagging (Access vs. Trunk Ports), MVC Refactoring & DSA
+
+### 🎯 Goal
+Deep dive into VLAN port tagging mechanisms in Computer Networks, continue daily algorithmic practice, and refactor the backend project structure toward MVC architecture.
+
+---
+
+### 🧠 Summary & Key Learnings
+- **DSA**:
+  - Solved a LeetCode problem.
+- **Core Subjects (Computer Networks)**:
+  - Deep-dived into **Access Ports vs. Trunk Ports** in VLANs to understand how frame and traffic tagging (IEEE 802.1Q) works in practice across switches.
+- **Dev (Web Development)**:
+  - Refactoring code and transitioning the project structure toward **MVC (Model-View-Controller)** architecture for clean separation of concerns and maintainability.
+- **Note**: Late-night session pushing past midnight / toward 2 AM.
